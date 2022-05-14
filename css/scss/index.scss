@@ -1,0 +1,111 @@
+@import "util/_mixin.scss";
+
+:root {
+    --color-1: #d5d5d5;
+    --color-2: #7d7d7d;
+    --color-3: white;
+    --color-4: #666;
+
+    --color-5: #00CCFF;
+    --color-6: #D400D4;
+
+    --color-glass: rgba(255, 255, 255, 0.45);
+
+    --gap: 1rem;
+    --border-radius: .5rem;
+
+    /* VARIABLES DEL CONTENIDO */
+    --content-wrap-w: 720px;
+
+    /* VARIABLES DEL FOOTER */
+    --footer-figure-w: 6rem;
+
+}
+
+$maxWidthMobile: 720px + 28px;
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    outline: 0 none;
+}
+
+
+html
+, body {
+    @include size();
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    font-size: 14px;
+    color: var(--color-4);
+    padding: calc(var(--gap) / 2);
+
+    background-image: url('../res/pattern.jpg');
+
+    animation: move 30s linear infinite;
+}
+
+@keyframes move {
+    100% {
+        background-position: 333px 333px;
+    }
+}
+
+.card-style {
+    padding: var(--gap);
+    background-color: var(--color-3);
+    border-radius: var(--border-radius);
+}
+
+.main {
+    --background-image-selected: linear-gradient(
+            315deg
+            , var(--color-5)
+            , var(--color-6)
+        );
+    @include size();
+    max-height: 700px;
+    max-width: 1000px;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+    flex-flow: column nowrap;
+    position: relative;
+    border-radius: calc(var(--border-radius) * 2);
+    background-image: var(--background-image-selected);
+
+    &-div {
+        position: relative;
+        z-index: 1;
+
+        &.header {
+            background-color: var(--color-glass);
+            padding: calc( var(--gap) * 2 / 3);
+            text-align: center;
+            color: var(--color-3);
+            border-radius: calc(var(--border-radius) * 2) calc(var(--border-radius) * 2) 0 0;
+        }
+
+        &.content {
+            flex: 1;
+
+            @import "_content.scss";
+        }
+
+        &.footer {
+            background-color: var(--color-glass);
+
+            @import "_footer.scss";
+        }
+    }
+
+    @media ( max-width: $maxWidthMobile ) {
+        max-height: none;
+    }
+}

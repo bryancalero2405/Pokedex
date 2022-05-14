@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Pokedex</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;1,300;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body ng-app="mainModule" ng-controller="mainCtrl">
+        <section class="main" ng-style="pokeSelected.style">
+
+            <!-- HEADER -->
+            <header class="main-div header">
+                <h1><span class="icon"></span>POKEDEX</h1>
+            </header>
+
+            <!-- CONTENT -->
+            <div class="main-div content">
+                <div class="content-wrap">
+                    <figure class="content-wrap-div content-wrap-figure">
+                        <figcaption class="content-wrap-figure-figcaption">
+                            <h2><span class="icon"></span>{{pokeSelected.name}}</h2>
+                            <ul class="type-list" ng-if="pokeSelected.types.length">
+                                <li class="type-list-item" ng-style="type.style" ng-repeat="type in pokeSelected.types">{{type.type_name}}</li>
+                            </ul>
+                        </figcaption>
+                        <div class="content-wrap-figure-img" style="background-image: url('{{pokeSelected.image}}')"></div>
+                    </figure>
+                    <article class="content-wrap-div content-wrap-info">
+                        <ul class="resume-list">
+                            <li class="resume-list-item" ng-repeat="resume in pokeSelected.resume"><i>{{resume.label}}</i><span>{{resume.value}}</span> </li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="main-div footer">
+                <ul id="pokeListID" class="poke-list">
+                    <li class="poke-list-item" ng-repeat="pokemon in pokeList" ng-click="selectPokemon( pokemon )">
+                        <a class="poke-list-item-link" href="#">
+                            <figure class="poke-list-item-link-figure" ng-style="pokemon.selected ? pokemon.style : {}">
+                                <img class="poke-list-item-link-figure-img" src="{{pokemon.image}}" alt="">
+                            </figure>
+                        </a>
+                    </li>
+                </ul>
+            </footer>
+
+        </section>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" charset="utf-8"></script>
+        <script src="js/index.js" charset="utf-8"></script>
+    </body>
+</html>

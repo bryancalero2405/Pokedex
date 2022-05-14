@@ -1,0 +1,39 @@
+& {
+    border-radius: 0 0 calc(var(--border-radius) * 2) calc(var(--border-radius) * 2);
+    padding: var(--gap) 0;
+    width: 100%;
+    overflow: hidden;
+
+    .poke-list {
+        list-style: none;
+        display: flex;
+        flex-flow: row nowrap;
+        overflow: auto;
+        gap: var(--gap);
+        max-width: var(--content-wrap-w);
+        margin: 0 auto;
+
+        &-item {
+            &-link {
+                &-figure {
+                    @include size(var(--footer-figure-w));
+                    padding: calc(var(--gap) / 2);
+                    background-color: var(--color-3);
+                    border-radius: calc(var(--border-radius) * 2);
+                    overflow: hidden;
+
+                    &-img {
+                        width: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+        }
+    }
+
+    @media ( max-width: $maxWidthMobile ) {
+        & {
+            padding: var(--gap) var(--gap) 0;
+        }
+    }
+}

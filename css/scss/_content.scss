@@ -1,0 +1,117 @@
+& {
+
+    .content-wrap {
+        height: 100%;
+        width: var(--content-wrap-w);
+        display: flex;
+        flex-flow: row nowrap;
+        gap: var(--gap);
+        margin: 0 auto;
+        padding: var(--gap) 0;
+        position: relative;
+        z-index: 1;
+
+        &-figure {
+            flex: 1;
+            display: flex;
+            flex-flow: column;
+            position: relative;
+
+            &-figcaption {
+                @extend .card-style;
+                text-align: center;
+
+                .type-list {
+                    --type-color: var(--color-1);
+                    list-style: none;
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: center;
+                    gap: .5rem;
+
+                    &-item {
+                        background-color: var(--type-color);
+                        padding: .15rem 1rem;
+                        border-radius: 1rem;
+                        text-transform: uppercase;
+                        text-shadow: 0 0 .25rem white;
+                    }
+                }
+            }
+
+            &-img {
+                @include size();
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+            }
+        }
+
+        &-info {
+            @extend .card-style;
+            flex-basis: 40%;
+
+            .resume-list {
+                list-style: none;
+                display: flex;
+                flex-flow: row wrap;
+                gap: var(--gap);
+                height: 100%;
+                align-content: space-evenly;
+
+                &-item {
+                    flex-basis: calc( 50% - ( var(--gap) / 2 ));
+                    text-align: center;
+                    font-size: 1.1rem;
+
+                    i {
+                        display: block;
+                        font-size: .8em;
+                        opacity: .7;
+                    }
+
+                    span {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        @media ( max-width: $maxWidthMobile ) {
+            & {
+                flex-flow: column nowrap;
+                gap: 0;
+                padding: var(--gap);
+                width: fit-content;
+
+                &-div {
+                    width: 320px;
+                }
+
+                &-figure {
+                    flex-basis: 40%;
+                    flex-grow: 0;
+
+                    &-img {
+                        z-index: 1;
+                    }
+
+                    &::before {
+                        @include size(100%, 25%);
+                        background-color: var(--color-3);
+                        border-radius: var(--border-radius) var(--border-radius) 0 0;
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                    }
+                }
+
+                &-info {
+                    flex: 1;
+                    border-radius: 0 0 var(--border-radius) var(--border-radius);
+                }
+            }
+        }
+    }
+}
